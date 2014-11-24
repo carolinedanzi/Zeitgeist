@@ -1,5 +1,6 @@
 /**
-*
+* Written by Dr. Brinkman
+* 
 * This is a helpful list of good hash table sizes, from
 * http://planetmath.org/goodhashtableprimes
 *

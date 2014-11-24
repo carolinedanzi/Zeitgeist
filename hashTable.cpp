@@ -3,7 +3,9 @@
 #include <string>
 #include "hashTable.h"
 
-
+/* 
+* Written by Gage Laufenberg. Modified by Caroline Danzi.
+*/
 
 template <class Key, class T>
 HashTable<Key, T>::HashTable(){
