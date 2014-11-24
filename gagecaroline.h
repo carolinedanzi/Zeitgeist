@@ -8,6 +8,7 @@ public:
 	unsigned int getCount(std::string s);
 	std::string getNthPopular(unsigned int n);
 	unsigned int numEntries();
+	void bubbleUp(unsigned int index);
 
 private: 
 	std::vector<std::pair<std::string, int>> countOrg;

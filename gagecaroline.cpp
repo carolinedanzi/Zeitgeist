@@ -19,3 +19,18 @@ std::string gagecaroline::getNthPopular(unsigned int n){
 unsigned int gagecaroline::numEntries(){
 	return stringOrg.size();
 }
+
+void gagecaroline::bubbleUp(unsigned int index){
+	std::pair<std::string, int> temp;
+	
+	if(countOrg[index] > countOrg[index-1]){
+		temp = countOrg[index];
+		countOrg[index] = countOrg[index-1];
+		countOrg[index-1] = temp;
+		
+		bubbleUp(index-1);
+	}
+
+
+
+}
