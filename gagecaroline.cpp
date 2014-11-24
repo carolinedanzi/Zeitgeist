@@ -1,7 +1,9 @@
 #include "gagecaroline.h"
+#include "hashTable.h"
 
 void gagecaroline::increaseCount(std::string s, int amount){
-	
+	unsigned int i = calcIndex(s);
+	std::string
 }
 
 unsigned int gagecaroline::getCount(std::string s){

@@ -32,6 +32,7 @@ public:
 	virtual T find(Key k);
 	virtual bool keyExists(Key k);
 	virtual void changeValue(Key, T x);
+	unsigned long calcIndex(Key k);
 
 	//Initialize all private member variables.
 	HashTable();
@@ -57,7 +58,7 @@ private:
 	// index of the existing item. If the item doesn't exist, return the index
 	// where it OUGHT to be. This function can then be used as a helper method in
 	// your other methods.
-	unsigned long calcIndex(Key k);
+	
 
 	unsigned long numItems; //Number of items in the hash table
 
@@ -67,4 +68,5 @@ public:
 	unsigned long numRemoved; //Number of slots that have been removed but not re-used. Those that have isDel == true
 	unsigned long numPrimes;
 	unsigned long backingArraySize;
+	
 };
