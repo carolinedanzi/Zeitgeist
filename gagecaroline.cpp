@@ -1,17 +1,17 @@
 #include "gagecaroline.h"
 
-void increaseCount(std::string s, int amount){
-
+void gagecaroline::increaseCount(std::string s, int amount){
+	
 }
 
-unsigned int getCount(std::string s){
+unsigned int gagecaroline::getCount(std::string s){
 	return 0;
 }
 
-std::string getNthPopular(unsigned int n){
-	return "";
+std::string gagecaroline::getNthPopular(unsigned int n){
+	return countOrg[n].first;
 }
 
-unsigned int numEntries(){
-	return 0;
+unsigned int gagecaroline::numEntries(){
+	return stringOrg.size();
 }
