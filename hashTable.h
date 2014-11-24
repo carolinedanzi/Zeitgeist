@@ -26,6 +26,7 @@ public:
 	virtual void remove(Key k);
 	virtual T find(Key k);
 	virtual bool keyExists(Key k);
+	virtual void changeValue(Key, T x);
 
 	//Initialize all private member variables.
 	HashTable();

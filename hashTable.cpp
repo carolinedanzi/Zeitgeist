@@ -95,6 +95,12 @@ unsigned long HashTable<Key, T>::size(){
 }
 
 template <class Key, class T>
+void HashTable<Key, T>::changeValue(Key k, T x){
+	unsigned long index = calcIndex(k);
+	backingArray[index].x = x;
+}
+
+template <class Key, class T>
 void HashTable<Key, T>::grow(){
 
 	numPrimes++;
