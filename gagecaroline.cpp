@@ -1,7 +1,15 @@
 #include "gagecaroline.h"
 
 void gagecaroline::increaseCount(std::string s, int amount){
-	
+	// If the word has already been seen, update the count
+	if (stringOrg.keyExists(s)){
+		// The new count will be the old plus the new amount
+		int newCount = getCount(s) + amount;
+		stringOrg.changeValue(s, newCount);
+	}
+	else{
+
+	}
 }
 
 unsigned int gagecaroline::getCount(std::string s){
