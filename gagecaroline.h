@@ -10,6 +10,6 @@ public:
 	unsigned int numEntries();
 
 private: 
-	std::vector<std::string> popularList;
-	HashTable<std::string, int> wordCount;
+	std::vector<std::pair<std::string, int>> countOrg;
+	HashTable<std::string, int> stringOrg;
 };
