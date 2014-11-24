@@ -5,7 +5,8 @@ void gagecaroline::increaseCount(std::string s, int amount){
 }
 
 unsigned int gagecaroline::getCount(std::string s){
-	return 0;
+	int index = stringOrg.find(s);
+	return countOrg[index].second;
 }
 
 // The vector is organized by popularity, where the nth 

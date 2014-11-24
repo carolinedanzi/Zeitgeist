@@ -1,3 +1,8 @@
+/*
+* Written by Dr. Brinkman.
+* Modified by Gage Laufenberg and Caroline Danzi
+*/
+
 #include "USet.h"
 
 template <class Key, class T>
