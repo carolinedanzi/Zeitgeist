@@ -1,4 +1,6 @@
 #include "Trends.h"
+#include "hashTable.h"
+#include <vector>
 
 class gagecaroline : public Trends {
 public: 
@@ -6,4 +8,8 @@ public:
 	unsigned int getCount(std::string s);
 	std::string getNthPopular(unsigned int n);
 	unsigned int numEntries();
+
+private: 
+	std::vector<std::string> popularList;
+	HashTable<std::string, int> wordCount;
 };
