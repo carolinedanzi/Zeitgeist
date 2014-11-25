@@ -4,10 +4,10 @@
 
 class gagecaroline : public Trends {
 public: 
-	void increaseCount(std::string s, int amount);
-	unsigned int getCount(std::string s);
-	std::string getNthPopular(unsigned int n);
-	unsigned int numEntries();	
+	virtual void increaseCount(std::string s, int amount);
+	virtual unsigned int getCount(std::string s);
+	virtual std::string getNthPopular(unsigned int n);
+	virtual unsigned int numEntries();	
 
 private: 
 	std::vector<std::pair<std::string, int>> countOrg;
