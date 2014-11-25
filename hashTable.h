@@ -77,7 +77,6 @@ public:
 // remove
 #include <string>
 #include "hashPrimes.h"
-//#include "HashTable.h"
 
 /*
 * Written by Gage Laufenberg. Modified by Caroline Danzi.
