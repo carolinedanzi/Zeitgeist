@@ -1,25 +1,30 @@
 #include "gagecaroline.h"
-#include "hashTable.h"
 
-void gagecaroline::increaseCount(std::string s, int amount){
-	
+/**
+* Written by Dr. Brinkman
+* This is a hash function for strings, based on Horner's method. See
+* http://en.wikipedia.org/wiki/Horner's_method
+*/
+unsigned long hash(std::string k){
+	unsigned long m = hashPrimes[NUM_HASH_PRIMES - 2];
+	unsigned long ret = 0;
+	for (unsigned int i = 0; i < k.size(); i++){
+		ret = (256 * ret + k[i]) % m;
+	}
+	return ret;
+}
 
-		// If the word has already been seen, update the count
+void gagecaroline::increaseCount(std::string s, unsigned int amount){
+	// If the word has already been seen, update the count
 	if (stringOrg.keyExists(s)){
-
-		unsigned int i = stringOrg.calcIndex(s);
-		// The new count will be the old plus the new amount
-		int newCount = getCount(s) + amount;
-		stringOrg.changeValue(s, newCount);
-		unsigned int index = stringOrg.find(s);
-		bubbleUp(index);
-
 		// Find the index in the popularity vector and
 		// update the count that is stored there
 		int indexInArray = stringOrg.find(s);
 		countOrg[indexInArray].second += amount;
 		bubbleUp(indexInArray);
 	}
+	// If the word has not yet been seen, add it to the
+	// vector and the hash table and then bubble it up
 	else{
 		countOrg.push_back(std::make_pair(s, amount));
 		int index = countOrg.size() - 1;
@@ -45,30 +50,37 @@ unsigned int gagecaroline::numEntries(){
 	return stringOrg.size();
 }
 
-unsigned int gagecaroline::bubbleUp(unsigned int index){
-	std::pair<std::string, int> temp;
-	unsigned int ret;
-	
+void gagecaroline::bubbleUp(unsigned int index){
+	if (index == 0){
+		return;
+	}
+
+
 	// If the count has exceeded the count of the previous
 	// element, we need to swap them so the more popular
 	// element is first in the vector
-	if(countOrg[index].second > countOrg[index-1].second){
-		temp = countOrg[index];
-		countOrg[index] = countOrg[index-1];
-		countOrg[index-1] = temp;
-
+	while(countOrg[index].second > countOrg[index - 1].second){
+		std::pair<std::string, int> temp;
 		
-		ret = bubbleUp(index-1);
+		temp = countOrg[index];
+		countOrg[index] = countOrg[index - 1];
+		countOrg[index - 1] = temp;
+
 		// After swapping the pairs in the popularity vector,
 		// we need to make sure the hash table contains
 		// the new index in the popularity vector
-		stringOrg.changeValue(countOrg[index].first, index - 1);
-		bubbleUp(index-1);
-
-		return ret;
+		stringOrg.changeValue(countOrg[index - 1].first, index - 1);
+		
+		
+		// Call bubbleUp on the same element, which has moved
+		// to a lower index in the array
+		
+		
+		// After bubbling up, we need to make sure the index stored
+		// in the hash table is correct
+		stringOrg.changeValue(countOrg[index].first, index);
+		
+		
+		index--;
 	}
-
-	return 0;
-
-
-}
+}	

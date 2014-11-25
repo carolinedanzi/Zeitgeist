@@ -10,10 +10,13 @@
 #include <fstream>
 #include <vector>
 #include <time.h>
+#include "hashPrimes.h"
 
-#include "naiveTrends.h"//You will need to change this to match your own class
+//#include "naiveTrends.h"//You will need to change this to match your own class
+
+//#include "naiveTrends.h"//You will need to change this to match your own class
+#include "gagecaroline.h"
 #include "utilities.h"
-
 
 /**
  * This tests a simple (but unlikely) use case, which is to read in all the data, and then print out the data in sorted order
@@ -22,20 +25,21 @@
  * Compare your 28885.txt.out to 28885_txt.out, using diff,s to see if your code is producing correct output.
  */
 double useCase_addAllThenGetInOrder(){
-	Trends* tr = new naiveTrends(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
+	Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
 	//We only want to time how long addToTrends takes, so we get
 	// the starting time, which is the clock time, in milliseconds
 	double start = getTimeInMillis();
+	
 	//Now add all the words to the Trends data structure
-	for(unsigned int i=0; i<wordlist.size(); i++){
-		tr->increaseCount(wordlist[i],1);
+	for (unsigned int i = 0; i < wordlist.size(); i++){
+		tr->increaseCount(wordlist[i], 1);
 	}
 	//Now get the end time
 	double end = getTimeInMillis();
-	std::cout << "increaseCount time: " << (end-start)/wordlist.size() << " ms per word" << std::endl;
+	std::cout << "increaseCount time: " << (end - start) / wordlist.size() << " ms per word" << std::endl;
 
 	//Now we will print out the complete results. This could be REALLY clow, if
 	// your getNthPopular is not a little bit smart.
@@ -43,7 +47,7 @@ double useCase_addAllThenGetInOrder(){
 	std::ofstream out(outfname.c_str());
 
 	start = getTimeInMillis();
-	for(unsigned int i=0; i< tr->numEntries(); i++){
+	for (unsigned int i = 0; i < tr->numEntries(); i++){
 		std::string s = tr->getNthPopular(i);
 		out << tr->getCount(s) << ": " << s << std::endl;
 	}
@@ -56,37 +60,53 @@ double useCase_addAllThenGetInOrder(){
 	return end - start;
 }
 
-void useCase_AnalyzeFirstHundred(){
-	Trends* trend = new naiveTrends();
+void useCase_AddThenGetMostPopular(){
+	Trends* trend = new gagecaroline();
 
-	std::vector<std::string> wordlist = getWordList("data/28885.txt");
+	std::vector<std::string> wordList = getWordList("data/28885.txt");
+
+	std::string outfname = "data/28885.txt.out";
+	std::ofstream out(outfname.c_str());
 
 	double start = getTimeInMillis();
-	for (int i = 0; i < 100; i++){
-		trend->increaseCount(wordlist[i], 1);
+	for (unsigned int i = 0; i < wordList.size(); i++){
+		trend->increaseCount(wordList[i], 1);
+		std::string mostPopular = trend->getNthPopular(0);
+		out << "After " << i << " words " << mostPopular << "is most popular" << std::endl;
 	}
+	double end = getTimeInMillis();
+
+	std::cout << "increaseCount followed immediately by getNthPopular: " << (end - start) / trend->numEntries() << " ms per entry" << std::endl;
 }
 
-/*
+
 std::string getTopN(unsigned int n){
+
 	//Rudimentary mark-up of getTopN()
 	//Will implement once other issues are fixed
 	
 	
 	
 	
-	Trends* trends = new naiveTrends(); //this should be new gagecaroline()
+	Trends* trends = new gagecaroline(); //this should be new gagecaroline()
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
+
+
 	std::string s;
 	
 	for (unsigned int i = 0; i <= n; i++){
 		s = s + ". " + trends->getNthPopular(i) + " /n";
 	}
+
 	
 	std::cout << s << std::endl;
+
+
+	return s;
+
 }
-*/
+
 
 
 
@@ -121,7 +141,7 @@ int main(){
 
 	/* The data files are books from project Gutenberg. I have provided the inputs, as well as my outputs
 	 * in the starter files */
-	
+
 	useCase_addAllThenGetInOrder();
 
 	return 0;

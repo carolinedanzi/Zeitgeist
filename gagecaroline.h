@@ -1,16 +1,16 @@
 #include "Trends.h"
-#include "hashTable.h"
+#include "HashTable.h"
 #include <vector>
 
 class gagecaroline : public Trends {
 public: 
-	void increaseCount(std::string s, int amount);
-	unsigned int getCount(std::string s);
-	std::string getNthPopular(unsigned int n);
-	unsigned int numEntries();
-	unsigned int bubbleUp(unsigned int index);
+	virtual void increaseCount(std::string s, unsigned int amount);
+	virtual unsigned int getCount(std::string s);
+	virtual std::string getNthPopular(unsigned int n);
+	virtual unsigned int numEntries();	
 
 private: 
 	std::vector<std::pair<std::string, int>> countOrg;
 	HashTable<std::string, int> stringOrg;
+	void bubbleUp(unsigned int index);
 };
