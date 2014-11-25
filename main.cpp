@@ -11,7 +11,8 @@
 #include <vector>
 #include <time.h>
 
-#include "gagecaroline.cpp" //You will need to change this to match your own class
+//#include "naiveTrends.h"//You will need to change this to match your own class
+#include "naiveTrends.h"
 #include "utilities.h"
 
 
@@ -22,7 +23,7 @@
  * Compare your 28885.txt.out to 28885_txt.out, using diff,s to see if your code is producing correct output.
  */
 double useCase_addAllThenGetInOrder(){
-	Trends* tr = new naiveTrends(); //You will need to change this to match your own class!
+	Trends* tr = new naiveTrends(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
@@ -68,15 +69,21 @@ void useCase_AnalyzeFirstHundred(){
 }
 
 std::string getTopN(unsigned int n){
+	Trends* trends = new naiveTrends();
+
+	std::vector<std::string> wordlist = getWordList("data/28885.txt");
+	
+	
 	std::string s;
 
-	for (int i = 0; i <= n; i++){
-		s = s + ". " getNthPopular(i) + " /n";
+	for (unsigned int i = 0; i <= n; i++){
+		s = s + ". " + trends->getNthPopular(i) + " /n";
 	}
-
-
-
 }
+
+
+
+
 
 /*
  * The only purpose of main() is to call processFile with increasingingly larger and larger
