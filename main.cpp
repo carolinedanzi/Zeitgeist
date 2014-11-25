@@ -11,8 +11,7 @@
 #include <vector>
 #include <time.h>
 
-//#include "naiveTrends.h"//You will need to change this to match your own class
-#include "naiveTrends.h"
+#include "naiveTrends.h"//You will need to change this to match your own class
 #include "utilities.h"
 
 
@@ -68,19 +67,47 @@ void useCase_AnalyzeFirstHundred(){
 	}
 }
 
+/*
 std::string getTopN(unsigned int n){
-	Trends* trends = new naiveTrends();
+	//Rudimentary mark-up of getTopN()
+	//Will implement once other issues are fixed
+	
+	
+	
+	
+	Trends* trends = new naiveTrends(); //this should be new gagecaroline()
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
-	
-	
 	std::string s;
-
+	
 	for (unsigned int i = 0; i <= n; i++){
 		s = s + ". " + trends->getNthPopular(i) + " /n";
 	}
+	
+	std::cout << s << std::endl;
 }
+*/
 
+
+
+/*
+std::string searchByCount(unsigned int count){
+	//rudimentary markUp of searchByCount()
+	//will implement when other issues are fixed
+
+	if(countOrg.second() == count){ 
+		return countOrg.first;
+	}
+	else if(countOrg.second() < count){
+		return searchByCount(count + (count/2));
+	}
+	else {
+		return searchByCount(count - (count/2));
+	
+	}
+
+}
+*/
 
 
 
