@@ -8,7 +8,7 @@
 unsigned long hash(std::string k){
 	unsigned long m = hashPrimes[NUM_HASH_PRIMES - 2];
 	unsigned long ret = 0;
-	for (unsigned int i = 0; i<k.size(); i++){
+	for (unsigned int i = 0; i < k.size(); i++){
 		ret = (256 * ret + k[i]) % m;
 	}
 	return ret;
@@ -54,7 +54,7 @@ void gagecaroline::bubbleUp(unsigned int index){
 	if (index == 0){
 		return;
 	}
-		
+
 	std::pair<std::string, int> temp;
 
 	// If the count has exceeded the count of the previous
@@ -68,7 +68,7 @@ void gagecaroline::bubbleUp(unsigned int index){
 		// After swapping the pairs in the popularity vector,
 		// we need to make sure the hash table contains
 		// the new index in the popularity vector
-		stringOrg.changeValue(countOrg[index].first, index - 1);
+		stringOrg.changeValue(countOrg[index - 1].first, index - 1);
 		// Call bubbleUp on the same element, which has moved
 		// to a lower index in the array
 		bubbleUp(index - 1);
