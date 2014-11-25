@@ -12,8 +12,9 @@
 #include <time.h>
 #include "hashPrimes.h"
 
-#include "naiveTrends.h"//You will need to change this to match your own class
-//#include "gagecaroline.h"
+//#include "naiveTrends.h"//You will need to change this to match your own class
+//#include "smarterTrends.h"
+#include "gagecaroline.h"
 #include "utilities.h"
 
 /**
@@ -23,7 +24,7 @@
  * Compare your 28885.txt.out to 28885_txt.out, using diff,s to see if your code is producing correct output.
  */
 double useCase_addAllThenGetInOrder(){
-	Trends* tr = new naiveTrends(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
+	Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
@@ -43,6 +44,8 @@ double useCase_addAllThenGetInOrder(){
 	std::string outfname = "data/28885.txt.out";
 	std::ofstream out(outfname.c_str());
 
+	out << "gagecaroline Trends output" << std::endl;
+
 	start = getTimeInMillis();
 	for (unsigned int i = 0; i < tr->numEntries(); i++){
 		std::string s = tr->getNthPopular(i);
@@ -58,7 +61,7 @@ double useCase_addAllThenGetInOrder(){
 }
 
 void useCase_AddThenGetMostPopular(){
-	Trends* trend = new naiveTrends();
+	Trends* trend = new gagecaroline();
 
 	std::vector<std::string> wordList = getWordList("data/28885.txt");
 
@@ -77,7 +80,7 @@ void useCase_AddThenGetMostPopular(){
 }
 
 std::string getTopN(unsigned int n){
-	Trends* trends = new naiveTrends();
+	Trends* trends = new gagecaroline();
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
