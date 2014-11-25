@@ -52,6 +52,10 @@ unsigned int gagecaroline::numEntries(){
 }
 
 void gagecaroline::bubbleUp(unsigned int index){
+	if (index == 0){
+		return;
+	}
+		
 	std::pair<std::string, int> temp;
 
 	// If the count has exceeded the count of the previous
