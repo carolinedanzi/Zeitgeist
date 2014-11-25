@@ -56,6 +56,7 @@ void gagecaroline::bubbleUp(unsigned int index){
 	}
 
 
+
 	// If the count has exceeded the count of the previous
 	// element, we need to swap them so the more popular
 	// element is first in the vector
@@ -70,17 +71,23 @@ void gagecaroline::bubbleUp(unsigned int index){
 		// we need to make sure the hash table contains
 		// the new index in the popularity vector
 		stringOrg.changeValue(countOrg[index - 1].first, index - 1);
+
 		
 		
+
+		// After bubbling up, we need to make sure the index stored
+		// in the hash table is correct
+		stringOrg.changeValue(countOrg[index].first, index);
+
 		// Call bubbleUp on the same element, which has moved
 		// to a lower index in the array
 		
 		
 		// After bubbling up, we need to make sure the index stored
 		// in the hash table is correct
-		stringOrg.changeValue(countOrg[index].first, index);
-		
 		
 		index--;
 	}
-}	
+
+}
+
