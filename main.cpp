@@ -10,6 +10,7 @@
 #include <fstream>
 #include <vector>
 #include <time.h>
+#include "hashPrimes.h"
 
 //#include "naiveTrends.h"//You will need to change this to match your own class
 #include "gagecaroline.h"

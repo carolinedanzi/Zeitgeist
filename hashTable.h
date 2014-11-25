@@ -2,7 +2,7 @@
 //Author: Bo Brinkman
 //Date: 2013/07/24
 #include "USet.h"
-
+unsigned long hash(std::string k);
 /*
 * Note: Just above your template declaration when you use this class, you
 * must define method called "hash" that takes a Key as input, and returns
@@ -76,7 +76,10 @@ public:
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
-#include "hashPrimes.h"
+//#include "hashPrimes.h"
+
+extern unsigned long hashPrimes[];
+#define NUM_HASH_PRIMES 26
 
 /*
 * Written by Gage Laufenberg. Modified by Caroline Danzi.
@@ -164,6 +167,9 @@ bool HashTable<Key, T>::keyExists(Key k){
 	if (i == numItems) return false;
 
 	if (i < backingArraySize) return true;
+
+	else
+		return false;
 }
 
 template <class Key, class T>
