@@ -1,19 +1,10 @@
 #include "gagecaroline.h"
-#include "hashTable.h"
 
 void gagecaroline::increaseCount(std::string s, int amount){
 	
 
 		// If the word has already been seen, update the count
-	if (stringOrg.keyExists(s)){
-
-		unsigned int i = stringOrg.calcIndex(s);
-		// The new count will be the old plus the new amount
-		int newCount = getCount(s) + amount;
-		stringOrg.changeValue(s, newCount);
-		unsigned int index = stringOrg.find(s);
-		bubbleUp(index);
-
+	if (stringOrg.keyExists(s)){;
 		// Find the index in the popularity vector and
 		// update the count that is stored there
 		int indexInArray = stringOrg.find(s);

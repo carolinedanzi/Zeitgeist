@@ -1,9 +1,19 @@
-/*
-* Written by Dr. Brinkman.
-* Modified by Gage Laufenberg and Caroline Danzi
-*/
-
+//DO NOT CHANGE THIS FILE
+//Author: Bo Brinkman
+//Date: 2013/07/24
 #include "USet.h"
+
+/*
+* Note: Just above your template declaration when you use this class, you
+* must define method called "hash" that takes a Key as input, and returns
+* an unsigned long (which is the hash value)
+*
+* For example, you might do:
+* unsigned long hash(char c){ return 10*((unsigned long)c)%13; }
+* HashTable<char,int> mySillyTable;
+*
+* If you don't define an appropriate hash function, the class won't compile.
+*/
 
 template <class Key, class T>
 class HashTable : public USet <Key, T> {
@@ -31,7 +41,7 @@ public:
 	virtual void remove(Key k);
 	virtual T find(Key k);
 	virtual bool keyExists(Key k);
-	virtual void changeValue(Key, T x);
+	virtual void changeValue(Key k, T x);
 	unsigned long calcIndex(Key k);
 
 	//Initialize all private member variables.
@@ -53,13 +63,6 @@ private:
 	// after initializing the new array.
 	void grow();
 
-	//This helper method should take a key, and return the index for that
-	// item within the hash table. If the item already exists, return the
-	// index of the existing item. If the item doesn't exist, return the index
-	// where it OUGHT to be. This function can then be used as a helper method in
-	// your other methods.
-	
-
 	unsigned long numItems; //Number of items in the hash table
 
 	//Note: Ordinarily, these OUGHT to be private. In this case I have
@@ -68,5 +71,4 @@ public:
 	unsigned long numRemoved; //Number of slots that have been removed but not re-used. Those that have isDel == true
 	unsigned long numPrimes;
 	unsigned long backingArraySize;
-	
 };
