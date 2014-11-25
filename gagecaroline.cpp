@@ -2,8 +2,18 @@
 #include "hashTable.h"
 
 void gagecaroline::increaseCount(std::string s, int amount){
-	unsigned int i = calcIndex(s);
-	std::string
+	
+
+		// If the word has already been seen, update the count
+	if (stringOrg.keyExists(s)){
+		unsigned int i = stringOrg.calcIndex(s);
+		// The new count will be the old plus the new amount
+		int newCount = getCount(s) + amount;
+		stringOrg.changeValue(s, newCount);
+		unsigned int index = stringOrg.find(s);
+		bubbleUp(index);
+	}
+
 }
 
 unsigned int gagecaroline::getCount(std::string s){
@@ -23,17 +33,18 @@ unsigned int gagecaroline::numEntries(){
 	return stringOrg.size();
 }
 
-void gagecaroline::bubbleUp(unsigned int index){
+unsigned int gagecaroline::bubbleUp(unsigned int index){
 	std::pair<std::string, int> temp;
+	unsigned int ret;
 	
 	if(countOrg[index] > countOrg[index-1]){
 		temp = countOrg[index];
 		countOrg[index] = countOrg[index-1];
 		countOrg[index-1] = temp;
 		
-		bubbleUp(index-1);
+		ret = bubbleUp(index-1);
 	}
 
-
+	return ret;
 
 }

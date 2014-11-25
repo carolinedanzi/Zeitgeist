@@ -11,8 +11,9 @@
 #include <vector>
 #include <time.h>
 
-#include "naiveTrends.h" //You will need to change this to match your own class
+#include "gagecaroline.cpp" //You will need to change this to match your own class
 #include "utilities.h"
+
 
 /**
  * This tests a simple (but unlikely) use case, which is to read in all the data, and then print out the data in sorted order
@@ -64,6 +65,17 @@ void useCase_AnalyzeFirstHundred(){
 	for (int i = 0; i < 100; i++){
 		trend->increaseCount(wordlist[i], 1);
 	}
+}
+
+std::string getTopN(unsigned int n){
+	std::string s;
+
+	for (int i = 0; i <= n; i++){
+		s = s + ". " getNthPopular(i) + " /n";
+	}
+
+
+
 }
 
 /*
