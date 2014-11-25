@@ -12,5 +12,5 @@ public:
 private: 
 	std::vector<std::pair<std::string, int>> countOrg;
 	HashTable<std::string, int> stringOrg;
-	unsigned int bubbleUp(unsigned int index);
+	void bubbleUp(unsigned int index);
 };
