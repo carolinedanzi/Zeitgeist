@@ -71,9 +71,12 @@ void gagecaroline::bubbleUp(unsigned int index){
 		stringOrg.changeValue(countOrg[index - 1].first, index - 1);
 		// Call bubbleUp on the same element, which has moved
 		// to a lower index in the array
+
+		// After bubbling up, we need to make sure the index stored
+		// in the hash table is correct
+		stringOrg.changeValue(countOrg[index].first, index);
+
 		bubbleUp(index - 1);
 	}
-	// After bubbling up, we need to make sure the index stored
-	// in the hash table is correct
-	stringOrg.changeValue(countOrg[index].first, index);
+	return;
 }
