@@ -1,10 +1,10 @@
 #include "Trends.h"
-#include "hashTable.h"
+#include "HashTable.h"
 #include <vector>
 
 class gagecaroline : public Trends {
 public: 
-	virtual void increaseCount(std::string s, int amount);
+	virtual void increaseCount(std::string s, unsigned int amount);
 	virtual unsigned int getCount(std::string s);
 	virtual std::string getNthPopular(unsigned int n);
 	virtual unsigned int numEntries();	

@@ -1,7 +1,7 @@
 #include "gagecaroline.h"
 #include "hashPrimes.h"
 
-void gagecaroline::increaseCount(std::string s, int amount){
+void gagecaroline::increaseCount(std::string s, unsigned int amount){
 	// If the word has already been seen, update the count
 	if (stringOrg.keyExists(s)){
 		// Find the index in the popularity vector and
