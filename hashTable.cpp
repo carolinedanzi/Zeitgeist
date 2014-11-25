@@ -1,7 +1,7 @@
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
-#include "hashTable.h"
+#include "HashTable.h"
 
 /* 
 * Written by Gage Laufenberg. Modified by Caroline Danzi.

@@ -13,4 +13,5 @@ private:
 	std::vector<std::pair<std::string, int>> countOrg;
 	HashTable<std::string, int> stringOrg;
 	void bubbleUp(unsigned int index);
+	//unsigned long hash(std::string k);
 };
