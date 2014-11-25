@@ -1,5 +1,4 @@
 #include "gagecaroline.h"
-//#include "hashPrimes.h"
 
 /**
 * Written by Dr. Brinkman
