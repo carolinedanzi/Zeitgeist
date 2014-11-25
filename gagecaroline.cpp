@@ -1,6 +1,20 @@
 #include "gagecaroline.h"
 #include "hashPrimes.h"
 
+/**
+* Written by Dr. Brinkman
+* This is a hash function for strings, based on Horner's method. See
+* http://en.wikipedia.org/wiki/Horner's_method
+*/
+unsigned long hash(std::string k){
+	unsigned long m = hashPrimes[NUM_HASH_PRIMES - 2];
+	unsigned long ret = 0;
+	for (unsigned int i = 0; i<k.size(); i++){
+		ret = (256 * ret + k[i]) % m;
+	}
+	return ret;
+}
+
 void gagecaroline::increaseCount(std::string s, unsigned int amount){
 	// If the word has already been seen, update the count
 	if (stringOrg.keyExists(s)){
@@ -59,18 +73,4 @@ void gagecaroline::bubbleUp(unsigned int index){
 	// After bubbling up, we need to make sure the index stored
 	// in the hash table is correct
 	stringOrg.changeValue(countOrg[index].first, index);
-}
-
-/**
-* Written by Dr. Brinkman
-* This is a hash function for strings, based on Horner's method. See
-* http://en.wikipedia.org/wiki/Horner's_method
-*/
-unsigned long hash(std::string k){
-	unsigned long m = hashPrimes[NUM_HASH_PRIMES - 2];
-	unsigned long ret = 0;
-	for (unsigned int i = 0; i<k.size(); i++){
-		ret = (256 * ret + k[i]) % m;
-	}
-	return ret;
 }

@@ -15,7 +15,6 @@
 #include "gagecaroline.h"
 #include "utilities.h"
 
-
 /**
  * This tests a simple (but unlikely) use case, which is to read in all the data, and then print out the data in sorted order
  * based on popularity.
@@ -57,14 +56,14 @@ double useCase_addAllThenGetInOrder(){
 	return end - start;
 }
 
-void useCase_AnalyzeFirstHundred(){
+void useCase_AddThenGetMostPopular(){
 	Trends* trend = new gagecaroline();
 
-	std::vector<std::string> wordlist = getWordList("data/28885.txt");
+	std::vector<std::string> wordList = getWordList("data/28885.txt");
 
 	double start = getTimeInMillis();
-	for (int i = 0; i < 100; i++){
-		trend->increaseCount(wordlist[i], 1);
+	for (unsigned int i = 0; i < wordList.size(); i++){
+		trend->increaseCount(wordList[i], 1);
 	}
 }
 
