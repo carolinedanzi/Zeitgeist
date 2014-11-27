@@ -51,10 +51,13 @@ unsigned int gagecaroline::numEntries(){
 }
 
 void gagecaroline::bubbleUp(unsigned int index){
+
 	// If the count has exceeded the count of the previous
 	// element, we need to swap them so the more popular
 	// element is first in the vector
-	while(countOrg[index].second > countOrg[index - 1].second){
+	
+	
+	while(index > 0 && countOrg[index].second > countOrg[index - 1].second){
 		std::pair<std::string, int> temp;
 		
 		temp = countOrg[index];
@@ -77,6 +80,7 @@ void gagecaroline::bubbleUp(unsigned int index){
 		// After bubbling up, we need to make sure the index stored
 		// in the hash table is correct
 		
+
 		index--;
 	}
 
