@@ -48,8 +48,6 @@ double useCase_addAllThenGetInOrder(){
 	std::string outfname = "data/28885.txt.out";
 	std::ofstream out(outfname.c_str());
 
-	out << "gagecaroline Trends output" << std::endl;
-
 	start = getTimeInMillis();
 	for (unsigned int i = 0; i < tr->numEntries(); i++){
 		std::string s = tr->getNthPopular(i);
