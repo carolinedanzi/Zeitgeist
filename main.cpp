@@ -16,7 +16,11 @@
 //#include "smarterTrends.h"
 
 //#include "gagecaroline.h"
+
 #include "kyleAndKristinTrends.h"
+
+#include "apsmTrends.h"
+
 #include "utilities.h"
 
 /**
@@ -26,8 +30,12 @@
  * Compare your 28885.txt.out to 28885_txt.out, using diff,s to see if your code is producing correct output.
  */
 double useCase_addAllThenGetInOrder(){
+
 	//Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
 	Trends* tr = new kyleAndKristinTrends();
+
+	Trends* tr = new apsmTrends(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
+
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
@@ -63,14 +71,15 @@ double useCase_addAllThenGetInOrder(){
 }
 /*
 void useCase_AddThenGetMostPopular(){
-	Trends* trend = new gagecaroline();
+	Trends* trend = new apsmTrends();
 
-	std::vector<std::string> wordList = getWordList("data/28885.txt");
+	std::vector<std::string> wordList = getWordList("data/6130.txt");
 
-	std::string outfname = "data/28885.txt.out";
+	std::string outfname = "data/6130.txt.out";
 	std::ofstream out(outfname.c_str());
 
 	double start = getTimeInMillis();
+	// Originally for i < wordList.size(), but took too long with smarterTrends
 	for (unsigned int i = 0; i < 1000; i++){
 		trend->increaseCount(wordList[i], 1);
 		std::string mostPopular = trend->getNthPopular(0);
@@ -88,7 +97,7 @@ void getTopN(unsigned int n){
 	//Will implement once other issues are fixed
 	
 	
-	Trends* trends = new gagecaroline(); //this should be new gagecaroline()
+	Trends* trends = new apsmTrends(); //this should be new gagecaroline()
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
@@ -184,11 +193,16 @@ int main(){
 	useCase_addAllThenGetInOrder();
 
 	//getTopN(10);
+
 	//useCase_AddThenGetMostPopular();
 	
 	kyleAndKristinCantgetTopN(10);
 	useCase_kyleAndKristinCantAddThenGetMostPopular();
 	
+
+
+	//useCase_AddThenGetMostPopular();
+
 
 	return 0;
 }

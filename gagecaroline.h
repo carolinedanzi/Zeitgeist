@@ -2,6 +2,11 @@
 #include "HashTable.h"
 #include <vector>
 
+/*
+Originality Note: Written by Gage Laufenberg and Caroline Danzi
+Uses Gage's Hash Table lab, with some modification
+*/
+
 class gagecaroline : public Trends {
 public: 
 	virtual void increaseCount(std::string s, unsigned int amount);
