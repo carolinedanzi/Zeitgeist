@@ -15,11 +15,8 @@
 //#include "naiveTrends.h"//You will need to change this to match your own class
 //#include "smarterTrends.h"
 
-//#include "gagecaroline.h"
-
-#include "kyleAndKristinTrends.h"
-
-#include "apsmTrends.h"
+#include "gagecaroline.h"
+//#include "kyleAndKristinTrends.h"
 
 #include "utilities.h"
 
@@ -31,10 +28,9 @@
  */
 double useCase_addAllThenGetInOrder(){
 
-	//Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
-	Trends* tr = new kyleAndKristinTrends();
+	Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
+	//Trends* tr = new kyleAndKristinTrends();
 
-	Trends* tr = new apsmTrends(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
 
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
@@ -71,7 +67,7 @@ double useCase_addAllThenGetInOrder(){
 }
 /*
 void useCase_AddThenGetMostPopular(){
-	Trends* trend = new apsmTrends();
+	Trends* trend = new gagecaroline();
 
 	std::vector<std::string> wordList = getWordList("data/6130.txt");
 
@@ -120,6 +116,7 @@ void getTopN(unsigned int n){
 	std::cout << (end-start)/n << "ms per entry" << std::endl;
 }
 */
+/*
 void useCase_kyleAndKristinCantAddThenGetMostPopular(){
 	Trends* trend = new kyleAndKristinTrends();
 
@@ -169,6 +166,37 @@ void kyleAndKristinCantgetTopN(unsigned int n){
 	std::cout << (end-start)/n << "ms per entry" << std::endl;
 }
 
+*/
+void getSearches_a_n(unsigned int a, unsigned int n){
+	// The purpose of this function is to get nTh popular between int a and int n
+	// for instance: finding searches ranked 500 - 1500
+
+	Trends* trends = new gagecaroline(); //this should be new gagecaroline()
+
+	std::vector<std::string> wordlist = getWordList("data/28885.txt");
+
+	for (unsigned int i = 0; i < wordlist.size(); i++){
+		trends->increaseCount(wordlist[i], 1);
+	}
+
+
+	double start = getTimeInMillis();
+	std::string s;
+	
+
+
+	std::cout << "The searches between" << a << " and " << n << " are..." <<std::endl;
+	for(unsigned int i = 0; i <= (n-a); i++){
+		s = std::to_string(i+a) + ". " + trends->getNthPopular(i+a);
+		std::cout << s << "			" << trends->getCount(trends->getNthPopular(i+a)) << std::endl;
+	}
+
+	double end = getTimeInMillis();
+	std::cout << (end-start)/n << "ms per entry" << std::endl;
+
+
+}
+
 
 
 /*
@@ -190,14 +218,16 @@ int main(){
 	
 	
 	
-	useCase_addAllThenGetInOrder();
+	//useCase_addAllThenGetInOrder();
 
+
+	getSearches_a_n(100, 300);
 	//getTopN(10);
 
 	//useCase_AddThenGetMostPopular();
 	
-	kyleAndKristinCantgetTopN(10);
-	useCase_kyleAndKristinCantAddThenGetMostPopular();
+	//kyleAndKristinCantgetTopN(10);
+	//useCase_kyleAndKristinCantAddThenGetMostPopular();
 	
 
 
