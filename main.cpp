@@ -15,7 +15,8 @@
 //#include "naiveTrends.h"//You will need to change this to match your own class
 //#include "smarterTrends.h"
 
-#include "gagecaroline.h"
+//#include "gagecaroline.h"
+#include "apsmTrends.h"
 #include "utilities.h"
 
 /**
@@ -25,7 +26,7 @@
  * Compare your 28885.txt.out to 28885_txt.out, using diff,s to see if your code is producing correct output.
  */
 double useCase_addAllThenGetInOrder(){
-	Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
+	Trends* tr = new apsmTrends(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
@@ -61,7 +62,7 @@ double useCase_addAllThenGetInOrder(){
 }
 
 void useCase_AddThenGetMostPopular(){
-	Trends* trend = new gagecaroline();
+	Trends* trend = new apsmTrends();
 
 	std::vector<std::string> wordList = getWordList("data/6130.txt");
 
@@ -87,7 +88,7 @@ void getTopN(unsigned int n){
 	//Will implement once other issues are fixed
 	
 	
-	Trends* trends = new gagecaroline(); //this should be new gagecaroline()
+	Trends* trends = new apsmTrends(); //this should be new gagecaroline()
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
@@ -125,11 +126,11 @@ int main(){
 	/* The data files are books from project Gutenberg. I have provided the inputs, as well as my outputs
 	 * in the starter files */
 
-	//useCase_addAllThenGetInOrder();
+	useCase_addAllThenGetInOrder();
 
 	//getTopN(10);
 
-	useCase_AddThenGetMostPopular();
+	//useCase_AddThenGetMostPopular();
 
 	return 0;
 }
