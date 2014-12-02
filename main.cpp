@@ -63,9 +63,9 @@ double useCase_addAllThenGetInOrder(){
 void useCase_AddThenGetMostPopular(){
 	Trends* trend = new gagecaroline();
 
-	std::vector<std::string> wordList = getWordList("data/28885.txt");
+	std::vector<std::string> wordList = getWordList("data/6130.txt");
 
-	std::string outfname = "data/28885.txt.out";
+	std::string outfname = "data/6130.txt.out";
 	std::ofstream out(outfname.c_str());
 
 	double start = getTimeInMillis();
@@ -125,9 +125,9 @@ int main(){
 	/* The data files are books from project Gutenberg. I have provided the inputs, as well as my outputs
 	 * in the starter files */
 
-	useCase_addAllThenGetInOrder();
+	//useCase_addAllThenGetInOrder();
 
-	getTopN(10);
+	//getTopN(10);
 
 	useCase_AddThenGetMostPopular();
 
