@@ -10,15 +10,13 @@
 #include <fstream>
 #include <vector>
 #include <time.h>
+
 #include "hashPrimes.h"
 
 //#include "naiveTrends.h"//You will need to change this to match your own class
 //#include "smarterTrends.h"
-
 //#include "gagecaroline.h"
-
 #include "kyleAndKristinTrends.h"
-
 #include "utilities.h"
 
 /**
@@ -64,9 +62,9 @@ double useCase_addAllThenGetInOrder(){
 
 	return end - start;
 }
-/*
+
 void useCase_AddThenGetMostPopular(){
-	Trends* trend = new apsmTrends();
+	Trends* trend = new kyleAndKristinTrends();
 
 	std::vector<std::string> wordList = getWordList("data/6130.txt");
 
@@ -92,7 +90,7 @@ void getTopN(unsigned int n){
 	//Will implement once other issues are fixed
 	
 	
-	Trends* trends = new apsmTrends(); //this should be new gagecaroline()
+	Trends* trends = new kyleAndKristinTrends(); //this should be new gagecaroline()
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
@@ -114,7 +112,7 @@ void getTopN(unsigned int n){
 	double end = getTimeInMillis();
 	std::cout << (end-start)/n << "ms per entry" << std::endl;
 }
-*/
+
 void useCase_kyleAndKristinCantAddThenGetMostPopular(){
 	Trends* trend = new kyleAndKristinTrends();
 
