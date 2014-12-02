@@ -1,3 +1,4 @@
+#include "Trends.h"
 #include "naiveTrends.h"
 #include <algorithm>
 

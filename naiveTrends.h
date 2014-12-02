@@ -1,5 +1,3 @@
-#include "Trends.h"
-
 #include <vector>
 
 class naiveTrends : public Trends {

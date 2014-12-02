@@ -1,5 +1,3 @@
-#include "naiveTrends.h"
-
 class smarterTrends : public naiveTrends {
 public:
 	smarterTrends() { isSorted = false; }

@@ -1,3 +1,4 @@
+#include "Trends.h"
 #include "kyleAndKristinTrends.h"
 
 #include <algorithm>

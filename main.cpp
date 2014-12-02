@@ -11,18 +11,13 @@
 #include <vector>
 #include <time.h>
 
+#include "Trends.h"
 #include "hashPrimes.h"
 
-//#include "naiveTrends.h"//You will need to change this to match your own class
-//#include "smarterTrends.h"
-
+#include "naiveTrends.h"//You will need to change this to match your own class
+#include "smarterTrends.h"
 #include "gagecaroline.h"
-//#include "kyleAndKristinTrends.h"
-
-
-//#include "gagecaroline.h"
 #include "kyleAndKristinTrends.h"
-
 #include "utilities.h"
 
 /**

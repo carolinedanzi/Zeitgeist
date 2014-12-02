@@ -1,4 +1,3 @@
-#include "Trends.h"
 #include "HashTable.h"
 #include <vector>
 
