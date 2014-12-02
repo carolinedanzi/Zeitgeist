@@ -15,7 +15,8 @@
 //#include "naiveTrends.h"//You will need to change this to match your own class
 //#include "smarterTrends.h"
 
-#include "gagecaroline.h"
+//#include "gagecaroline.h"
+#include "kyleAndKristinTrends.h"
 #include "utilities.h"
 
 /**
@@ -25,7 +26,8 @@
  * Compare your 28885.txt.out to 28885_txt.out, using diff,s to see if your code is producing correct output.
  */
 double useCase_addAllThenGetInOrder(){
-	Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
+	//Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
+	Trends* tr = new kyleAndKristinTrends();
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
@@ -59,7 +61,7 @@ double useCase_addAllThenGetInOrder(){
 
 	return end - start;
 }
-
+/*
 void useCase_AddThenGetMostPopular(){
 	Trends* trend = new gagecaroline();
 
@@ -102,15 +104,61 @@ void getTopN(unsigned int n){
 	std::cout << "The top ten searches are..." << std::endl;
 	for(unsigned int i = 0; i <= n; i++){
 		s = std::to_string(i+1) + ". " + trends->getNthPopular(i);
-		std::cout << s << std::endl;
+		std::cout << s << "		" << trends->getCount(trends->getNthPopular(i)) << std::endl;
 	}
 
 	double end = getTimeInMillis();
 	std::cout << (end-start)/n << "ms per entry" << std::endl;
 }
+*/
+void useCase_kyleAndKristinCantAddThenGetMostPopular(){
+	Trends* trend = new kyleAndKristinTrends();
+
+	std::vector<std::string> wordList = getWordList("data/28885.txt");
+
+	std::string outfname = "data/28885.txt.out";
+	std::ofstream out(outfname.c_str());
+
+	double start = getTimeInMillis();
+	for (unsigned int i = 0; i < 1000; i++){
+		trend->increaseCount(wordList[i], 1);
+		std::string mostPopular = trend->getNthPopular(0);
+		out << "After " << i + 1 << " words " << mostPopular << " is most popular" << std::endl;
+	}
+	double end = getTimeInMillis();
+
+	std::cout << "increaseCount followed immediately by getNthPopular: " << (end - start) / trend->numEntries() << " ms per entry" << std::endl;
+}
 
 
+void kyleAndKristinCantgetTopN(unsigned int n){
 
+	//Rudimentary mark-up of getTopN()
+	//Will implement once other issues are fixed
+	
+	
+	Trends* trends = new kyleAndKristinTrends(); //this should be new gagecaroline()
+
+	std::vector<std::string> wordlist = getWordList("data/28885.txt");
+
+	for (unsigned int i = 0; i < wordlist.size(); i++){
+		trends->increaseCount(wordlist[i], 1);
+	}
+
+
+	double start = getTimeInMillis();
+	std::string s;
+	
+
+	std::cout << "The top ten searches are..." << std::endl;
+	for(unsigned int i = 0; i <= n; i++){
+		s = std::to_string(i+1) + ". " + trends->getNthPopular(i);
+		std::cout << s << "		" << trends->getCount(trends->getNthPopular(i)) << std::endl;
+	}
+
+	double end = getTimeInMillis();
+	std::cout << (end-start)/n << "ms per entry" << std::endl;
+}
 
 
 
@@ -124,11 +172,23 @@ int main(){
 	/* The data files are books from project Gutenberg. I have provided the inputs, as well as my outputs
 	 * in the starter files */
 
+	
+	
+	
+	/* Did not find a way to implement both custom Trends classes.
+	 *  before running functions, make sure everything in main.cpp matches */ 
+	
+	
+	
+	
 	useCase_addAllThenGetInOrder();
 
-	getTopN(10);
-
-	useCase_AddThenGetMostPopular();
+	//getTopN(10);
+	//useCase_AddThenGetMostPopular();
+	
+	kyleAndKristinCantgetTopN(10);
+	useCase_kyleAndKristinCantAddThenGetMostPopular();
+	
 
 	return 0;
 }
