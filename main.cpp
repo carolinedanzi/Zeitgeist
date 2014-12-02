@@ -13,8 +13,6 @@
 #include "hashPrimes.h"
 
 //#include "naiveTrends.h"//You will need to change this to match your own class
-
-//#include "naiveTrends.h"//You will need to change this to match your own class
 //#include "smarterTrends.h"
 
 #include "gagecaroline.h"
