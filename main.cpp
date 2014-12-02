@@ -69,6 +69,7 @@ void useCase_AddThenGetMostPopular(){
 	std::ofstream out(outfname.c_str());
 
 	double start = getTimeInMillis();
+	// Originally for i < wordList.size(), but took too long with smarterTrends
 	for (unsigned int i = 0; i < 1000; i++){
 		trend->increaseCount(wordList[i], 1);
 		std::string mostPopular = trend->getNthPopular(0);
