@@ -84,54 +84,36 @@ void useCase_AddThenGetMostPopular(){
 }
 
 
-std::string getTopN(unsigned int n){
+void getTopN(unsigned int n){
 
 	//Rudimentary mark-up of getTopN()
 	//Will implement once other issues are fixed
-	
-	
 	
 	
 	Trends* trends = new gagecaroline(); //this should be new gagecaroline()
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
+	for (unsigned int i = 0; i < wordlist.size(); i++){
+		trends->increaseCount(wordlist[i], 1);
+	}
 
+
+	double start = getTimeInMillis();
 	std::string s;
 	
-	for (unsigned int i = 0; i <= n; i++){
-		s = s + ". " + trends->getNthPopular(i) + " /n";
+
+	std::cout << "The top ten searches are..." << std::endl;
+	for(unsigned int i = 0; i <= n; i++){
+		s = std::to_string(i+1) + ". " + trends->getNthPopular(i);
+		std::cout << s << std::endl;
 	}
 
-	
-	std::cout << s << std::endl;
-
-
-	return s;
-
+	double end = getTimeInMillis();
+	std::cout << (end-start)/n << "ms per entry" << std::endl;
 }
 
 
-
-
-/*
-std::string searchByCount(unsigned int count){
-	//rudimentary markUp of searchByCount()
-	//will implement when other issues are fixed
-
-	if(countOrg.second() == count){ 
-		return countOrg.first;
-	}
-	else if(countOrg.second() < count){
-		return searchByCount(count + (count/2));
-	}
-	else {
-		return searchByCount(count - (count/2));
-	
-	}
-
-}
-*/
 
 
 
@@ -147,6 +129,7 @@ int main(){
 	 * in the starter files */
 
 	useCase_addAllThenGetInOrder();
+	getTopN(10);
 
 	return 0;
 }

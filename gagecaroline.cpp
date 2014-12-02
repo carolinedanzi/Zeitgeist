@@ -70,7 +70,7 @@ void gagecaroline::bubbleUp(unsigned int index){
 		// we need to make sure the hash table contains
 		// the new index in the popularity vector
 		stringOrg.changeValue(countOrg[index - 1].first, index - 1);
-
+		
 		
 		
 
