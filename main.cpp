@@ -19,8 +19,6 @@
 
 #include "kyleAndKristinTrends.h"
 
-#include "apsmTrends.h"
-
 #include "utilities.h"
 
 /**
@@ -33,9 +31,6 @@ double useCase_addAllThenGetInOrder(){
 
 	//Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
 	Trends* tr = new kyleAndKristinTrends();
-
-	Trends* tr = new apsmTrends(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
-
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
