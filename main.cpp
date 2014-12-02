@@ -69,10 +69,10 @@ void useCase_AddThenGetMostPopular(){
 	std::ofstream out(outfname.c_str());
 
 	double start = getTimeInMillis();
-	for (unsigned int i = 0; i < wordList.size(); i++){
+	for (unsigned int i = 0; i < 1000; i++){
 		trend->increaseCount(wordList[i], 1);
 		std::string mostPopular = trend->getNthPopular(0);
-		out << "After " << i << " words " << mostPopular << "is most popular" << std::endl;
+		out << "After " << i + 1 << " words " << mostPopular << " is most popular" << std::endl;
 	}
 	double end = getTimeInMillis();
 
@@ -143,6 +143,7 @@ int main(){
 	 * in the starter files */
 
 	useCase_addAllThenGetInOrder();
+	//useCase_AddThenGetMostPopular();
 
 	return 0;
 }
