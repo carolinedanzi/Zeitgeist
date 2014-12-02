@@ -13,8 +13,6 @@
 #include "hashPrimes.h"
 
 //#include "naiveTrends.h"//You will need to change this to match your own class
-
-//#include "naiveTrends.h"//You will need to change this to match your own class
 //#include "smarterTrends.h"
 
 #include "gagecaroline.h"
@@ -48,8 +46,6 @@ double useCase_addAllThenGetInOrder(){
 	std::string outfname = "data/28885.txt.out";
 	std::ofstream out(outfname.c_str());
 
-	out << "gagecaroline Trends output" << std::endl;
-
 	start = getTimeInMillis();
 	for (unsigned int i = 0; i < tr->numEntries(); i++){
 		std::string s = tr->getNthPopular(i);
@@ -73,10 +69,10 @@ void useCase_AddThenGetMostPopular(){
 	std::ofstream out(outfname.c_str());
 
 	double start = getTimeInMillis();
-	for (unsigned int i = 0; i < wordList.size(); i++){
+	for (unsigned int i = 0; i < 1000; i++){
 		trend->increaseCount(wordList[i], 1);
 		std::string mostPopular = trend->getNthPopular(0);
-		out << "After " << i << " words " << mostPopular << "is most popular" << std::endl;
+		out << "After " << i + 1 << " words " << mostPopular << " is most popular" << std::endl;
 	}
 	double end = getTimeInMillis();
 
@@ -129,7 +125,10 @@ int main(){
 	 * in the starter files */
 
 	useCase_addAllThenGetInOrder();
+
 	getTopN(10);
+
+	useCase_AddThenGetMostPopular();
 
 	return 0;
 }
