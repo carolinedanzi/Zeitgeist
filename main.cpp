@@ -10,6 +10,7 @@
 #include <fstream>
 #include <vector>
 #include <time.h>
+
 #include "hashPrimes.h"
 
 //#include "naiveTrends.h"//You will need to change this to match your own class
@@ -17,6 +18,10 @@
 
 #include "gagecaroline.h"
 //#include "kyleAndKristinTrends.h"
+
+
+//#include "gagecaroline.h"
+#include "kyleAndKristinTrends.h"
 
 #include "utilities.h"
 
@@ -30,7 +35,6 @@ double useCase_addAllThenGetInOrder(){
 
 	Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
 	//Trends* tr = new kyleAndKristinTrends();
-
 
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
@@ -65,9 +69,13 @@ double useCase_addAllThenGetInOrder(){
 
 	return end - start;
 }
-/*
+
 void useCase_AddThenGetMostPopular(){
+
 	Trends* trend = new gagecaroline();
+
+	//Trends* trend = new kyleAndKristinTrends();
+
 
 	std::vector<std::string> wordList = getWordList("data/6130.txt");
 
@@ -93,7 +101,7 @@ void getTopN(unsigned int n){
 	//Will implement once other issues are fixed
 	
 	
-	Trends* trends = new apsmTrends(); //this should be new gagecaroline()
+	Trends* trends = new gagecaroline(); //this should be new gagecaroline()
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 
@@ -115,26 +123,9 @@ void getTopN(unsigned int n){
 	double end = getTimeInMillis();
 	std::cout << (end-start)/n << "ms per entry" << std::endl;
 }
-*/
-/*
-void useCase_kyleAndKristinCantAddThenGetMostPopular(){
-	Trends* trend = new kyleAndKristinTrends();
 
-	std::vector<std::string> wordList = getWordList("data/28885.txt");
 
-	std::string outfname = "data/28885.txt.out";
-	std::ofstream out(outfname.c_str());
 
-	double start = getTimeInMillis();
-	for (unsigned int i = 0; i < 1000; i++){
-		trend->increaseCount(wordList[i], 1);
-		std::string mostPopular = trend->getNthPopular(0);
-		out << "After " << i + 1 << " words " << mostPopular << " is most popular" << std::endl;
-	}
-	double end = getTimeInMillis();
-
-	std::cout << "increaseCount followed immediately by getNthPopular: " << (end - start) / trend->numEntries() << " ms per entry" << std::endl;
-}
 
 
 void kyleAndKristinCantgetTopN(unsigned int n){
@@ -166,7 +157,7 @@ void kyleAndKristinCantgetTopN(unsigned int n){
 	std::cout << (end-start)/n << "ms per entry" << std::endl;
 }
 
-*/
+
 void getSearches_a_n(unsigned int a, unsigned int n){
 	// The purpose of this function is to get nTh popular between int a and int n
 	// for instance: finding searches ranked 500 - 1500
