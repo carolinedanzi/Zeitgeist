@@ -86,8 +86,12 @@ void useCase_SmarterStillBad(){
 	std::cout << "smarterTrends: increaseCount followed immediately by getNthPopular: " << (end - start) / trend->numEntries() << " ms per entry" << std::endl;
 }
 
+void foxyTrendsBetter(){
+
+}
+
 // Note: Output may differ based on how ties are dealt with
-void foxyTrends_Worse(){
+void foxyTrendsWorse(){
 	Trends* foxy = new foxyTrends();
 	std::vector<std::string> wordList = getWordList("data/6130.txt");
 	std::string outfname = "data/6130.txt.out";
@@ -230,7 +234,7 @@ int main(){
 	//kyleAndKristinCantgetTopN(10);
 	//useCase_kyleAndKristinCantAddThenGetMostPopular();
 	//useCase_AddThenGetMostPopular();
-	foxyTrends_Worse();
+	foxyTrendsWorse();
 	useCase_SmarterStillBad();
 
 	return 0;
