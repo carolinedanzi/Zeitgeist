@@ -18,6 +18,7 @@
 #include "smarterTrends.h"
 #include "gagecaroline.h"
 #include "kyleAndKristinTrends.h"
+#include "foxyTrends.h"
 #include "utilities.h"
 
 /**
@@ -28,7 +29,7 @@
  */
 double useCase_addAllThenGetInOrder(){
 
-	Trends* tr = new gagecaroline(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
+	Trends* tr = new foxyTrends(); //You will need to change this to match your own class! --->   WHY DOES THIS NOT WORK?!
 	//Trends* tr = new kyleAndKristinTrends();
 
 
@@ -65,12 +66,8 @@ double useCase_addAllThenGetInOrder(){
 	return end - start;
 }
 
-void useCase_AddThenGetMostPopular(){
-
-	Trends* trend = new gagecaroline();
-
-	//Trends* trend = new kyleAndKristinTrends();
-
+void useCase_SmarterStillBad(){
+	Trends* trend = new smarterTrends();
 
 	std::vector<std::string> wordList = getWordList("data/6130.txt");
 
@@ -86,9 +83,40 @@ void useCase_AddThenGetMostPopular(){
 	}
 	double end = getTimeInMillis();
 
-	std::cout << "increaseCount followed immediately by getNthPopular: " << (end - start) / trend->numEntries() << " ms per entry" << std::endl;
+	std::cout << "smarterTrends: increaseCount followed immediately by getNthPopular: " << (end - start) / trend->numEntries() << " ms per entry" << std::endl;
 }
 
+// Note: Output may differ based on how ties are dealt with
+void foxyTrends_Worse(){
+	Trends* foxy = new foxyTrends();
+	std::vector<std::string> wordList = getWordList("data/6130.txt");
+	std::string outfname = "data/6130.txt.out";
+	std::ofstream out(outfname.c_str());
+	// Find the time it takes foxyTrends to add the first 100 words,
+	// printing the most popular as it goes
+	double start = getTimeInMillis();
+	for (unsigned int i = 0; i < 100; i++){
+		foxy->increaseCount(wordList[i], 1);
+		std::string mostPopular = foxy->getNthPopular(0);
+		out << "After " << i + 1 << " words " << mostPopular << " is most popular" << std::endl;
+	}
+	double end = getTimeInMillis();
+	double foxyTime = (end - start) / 100;
+
+	// Now show that gagecaroline is faster
+	Trends* gc = new gagecaroline();
+	start = getTimeInMillis();
+	for (unsigned int i = 0; i < 100; i++){
+		gc->increaseCount(wordList[i], 1);
+		std::string mostPopular = gc->getNthPopular(0);
+		out << "After " << i + 1 << " words " << mostPopular << " is most popular" << std::endl;
+	}
+	end = getTimeInMillis();
+	double gcTime = (end - start) / 100;
+	std::cout << "Task: Add the first 100 words, printing out the most popular as it goes." << std::endl;
+	std::cout << "		foxyTrends took " << foxyTime << " ms per word to complete the task whereas" << std::endl;
+	std::cout << "		gagecaroline took only " << gcTime << " ms per word to complete the task." << std::endl;
+}
 
 void getTopN(unsigned int n){
 
@@ -194,31 +222,16 @@ int main(){
 
 	/* The data files are books from project Gutenberg. I have provided the inputs, as well as my outputs
 	 * in the starter files */
-
-	
-	
-	
-	/* Did not find a way to implement both custom Trends classes.
-	 *  before running functions, make sure everything in main.cpp matches */ 
-	
-	
-	
 	
 	//useCase_addAllThenGetInOrder();
-
-
-	getSearches_a_n(100, 300);
+	//getSearches_a_n(100, 300);
 	//getTopN(10);
-
 	//useCase_AddThenGetMostPopular();
-	
 	//kyleAndKristinCantgetTopN(10);
 	//useCase_kyleAndKristinCantAddThenGetMostPopular();
-	
-
-
 	//useCase_AddThenGetMostPopular();
-
+	foxyTrends_Worse();
+	useCase_SmarterStillBad();
 
 	return 0;
 }
