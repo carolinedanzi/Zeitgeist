@@ -38,7 +38,7 @@ double useCase_addAllThenGetInOrder(){
 	//We only want to time how long addToTrends takes, so we get
 	// the starting time, which is the clock time, in milliseconds
 	double start = getTimeInMillis();
-	
+
 	//Now add all the words to the Trends data structure
 	for (unsigned int i = 0; i < wordlist.size(); i++){
 		tr->increaseCount(wordlist[i], 1);
@@ -87,7 +87,41 @@ void useCase_SmarterStillBad(){
 }
 
 void foxyTrendsBetter(){
+	// Add all the words, then add the counts for the top ten together
+	// to see how many times the most popular words appear in the book
+	Trends* foxy = new foxyTrends();
+	std::vector<std::string> wordList = getWordList("data/46.txt");
 
+	int foxyPopularWordCount = 0;
+	double start = getTimeInMillis();
+	for (unsigned int i = 0; i < wordList.size(); i++){
+		foxy->increaseCount(wordList[i], 1);
+	}
+	for (unsigned int i = 0; i < 9; i++){
+		foxyPopularWordCount += foxy->getCount(foxy->getNthPopular(i));
+	}
+	double end = getTimeInMillis();
+	double foxyTime = end - start;
+
+	// Do the same with gagecaroline
+	Trends* gc = new gagecaroline();
+	int gcPopularWordCount = 0;
+	start = getTimeInMillis();
+	for (unsigned int i = 0; i < wordList.size(); i++){
+		gc->increaseCount(wordList[i], 1);
+	}
+	for (unsigned int i = 0; i < 9; i++){
+		gcPopularWordCount += gc->getCount(gc->getNthPopular(i));
+	}
+	end = getTimeInMillis();
+	double gcTime = end - start;
+
+	std::cout << "Task: Add all the words, then add the counts for the top ten together to see" << std::endl;
+	std::cout << "how many times the top ten words appear in the book." << std::endl;
+	std::cout << "		foxyTrends: The top ten most popular words appear " << foxyPopularWordCount << " times." << std::endl;
+	std::cout << "		Total time for foxyTrends: " << foxyTime << " ms." << std::endl;
+	std::cout << "		gagecaroline: The top ten most popular words appear " << gcPopularWordCount << " times." << std::endl;
+	std::cout << "		Total time for gagecaroline: " << gcTime << " ms." << std::endl;
 }
 
 // Note: Output may differ based on how ties are dealt with
@@ -126,8 +160,8 @@ void getTopN(unsigned int n){
 
 	//Rudimentary mark-up of getTopN()
 	//Will implement once other issues are fixed
-	
-	
+
+
 	Trends* trends = new gagecaroline(); //this should be new gagecaroline()
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
@@ -139,16 +173,16 @@ void getTopN(unsigned int n){
 
 	double start = getTimeInMillis();
 	std::string s;
-	
+
 
 	std::cout << "The top ten searches are..." << std::endl;
-	for(unsigned int i = 0; i <= n; i++){
-		s = std::to_string(i+1) + ". " + trends->getNthPopular(i);
+	for (unsigned int i = 0; i <= n; i++){
+		s = std::to_string(i + 1) + ". " + trends->getNthPopular(i);
 		std::cout << s << "		" << trends->getCount(trends->getNthPopular(i)) << std::endl;
 	}
 
 	double end = getTimeInMillis();
-	std::cout << (end-start)/n << "ms per entry" << std::endl;
+	std::cout << (end - start) / n << "ms per entry" << std::endl;
 }
 
 
@@ -159,8 +193,8 @@ void kyleAndKristinCantgetTopN(unsigned int n){
 
 	//Rudimentary mark-up of getTopN()
 	//Will implement once other issues are fixed
-	
-	
+
+
 	Trends* trends = new kyleAndKristinTrends(); //this should be new gagecaroline()
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
@@ -172,16 +206,16 @@ void kyleAndKristinCantgetTopN(unsigned int n){
 
 	double start = getTimeInMillis();
 	std::string s;
-	
+
 
 	std::cout << "The top ten searches are..." << std::endl;
-	for(unsigned int i = 0; i <= n; i++){
-		s = std::to_string(i+1) + ". " + trends->getNthPopular(i);
+	for (unsigned int i = 0; i <= n; i++){
+		s = std::to_string(i + 1) + ". " + trends->getNthPopular(i);
 		std::cout << s << "		" << trends->getCount(trends->getNthPopular(i)) << std::endl;
 	}
 
 	double end = getTimeInMillis();
-	std::cout << (end-start)/n << "ms per entry" << std::endl;
+	std::cout << (end - start) / n << "ms per entry" << std::endl;
 }
 
 
@@ -200,17 +234,17 @@ void getSearches_a_n(unsigned int a, unsigned int n){
 
 	double start = getTimeInMillis();
 	std::string s;
-	
 
 
-	std::cout << "The searches between" << a << " and " << n << " are..." <<std::endl;
-	for(unsigned int i = 0; i <= (n-a); i++){
-		s = std::to_string(i+a) + ". " + trends->getNthPopular(i+a);
-		std::cout << s << "			" << trends->getCount(trends->getNthPopular(i+a)) << std::endl;
+
+	std::cout << "The searches between" << a << " and " << n << " are..." << std::endl;
+	for (unsigned int i = 0; i <= (n - a); i++){
+		s = std::to_string(i + a) + ". " + trends->getNthPopular(i + a);
+		std::cout << s << "			" << trends->getCount(trends->getNthPopular(i + a)) << std::endl;
 	}
 
 	double end = getTimeInMillis();
-	std::cout << (end-start)/n << "ms per entry" << std::endl;
+	std::cout << (end - start) / n << "ms per entry" << std::endl;
 
 
 }
@@ -226,7 +260,7 @@ int main(){
 
 	/* The data files are books from project Gutenberg. I have provided the inputs, as well as my outputs
 	 * in the starter files */
-	
+
 	//useCase_addAllThenGetInOrder();
 	//getSearches_a_n(100, 300);
 	//getTopN(10);
@@ -234,8 +268,9 @@ int main(){
 	//kyleAndKristinCantgetTopN(10);
 	//useCase_kyleAndKristinCantAddThenGetMostPopular();
 	//useCase_AddThenGetMostPopular();
-	foxyTrendsWorse();
-	useCase_SmarterStillBad();
+	//foxyTrendsWorse();
+	//useCase_SmarterStillBad();
+	foxyTrendsBetter();
 
 	return 0;
 }
